@@ -1,4 +1,4 @@
-//const dotenv = require('dotenv')
+const dotenv = require("dotenv")
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -39,7 +39,14 @@ module.exports = {
         path: `${__dirname}/src/posts`,
       },
     },
-
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        // You can find your read-only API token under the Settings > API tokens
+        // section of your administrative area:
+        apiToken: process.env.DATO_API_TOKEN,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
   ],
