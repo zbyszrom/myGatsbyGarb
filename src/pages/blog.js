@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import Layout from "../components/layout"
 
 const getPosts = graphql`
@@ -8,6 +8,9 @@ const getPosts = graphql`
       totalCount
       edges {
         node {
+          fields {
+            slug
+          }
           id
           frontmatter {
             date
@@ -31,8 +34,10 @@ const Blog = () => {
       {posts.map(({ node }) => (
         <div key={node.id}>
           <h3>
-            {node.frontmatter.title}
-            <span>>- {node.frontmatter.date}</span>
+            <Link to={`/posts${node.fields.slug}`}>
+              {node.frontmatter.title}
+            </Link>
+            <span> - {node.frontmatter.date}</span>
           </h3>
           <p>{node.excerpt}</p>
         </div>
