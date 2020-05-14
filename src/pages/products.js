@@ -36,7 +36,7 @@ const Products = () => {
       {products.map(({ node }) => (
         <div key={node.id}>
           <h3>
-            <Link to={`/products${node.slug}`}>{node.name}</Link>
+            <Link to={`/products/${node.slug}`}>{node.name}</Link>
           </h3>
           <p>{node.price}</p>
           <p>{node.description}</p>

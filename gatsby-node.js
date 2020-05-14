@@ -28,6 +28,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allProducts: allDatoCmsProduct {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `)
 
@@ -38,6 +45,17 @@ exports.createPages = async ({ graphql, actions }) => {
       component: PostTemplate,
       context: {
         slug: post.fields.slug,
+      },
+    })
+  })
+
+  const products = data.allProducts.edges
+  products.forEach(({ node: product }) => {
+    createPage({
+      path: `/products/${product.slug}`,
+      component: ProductTemplate,
+      context: {
+        slug: product.slug,
       },
     })
   })
