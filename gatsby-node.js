@@ -1,7 +1,8 @@
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
-
+const ProductTemplate = path.resolve("./src/templates/productTemplate.js")
 const PostTemplate = path.resolve("./src/templates/postTemplate.js")
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === "MarkdownRemark") {
